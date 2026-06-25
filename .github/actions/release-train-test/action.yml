@@ -1,0 +1,10 @@
+name: Test Release
+runs:
+  using: composite
+  steps:
+    - name: Prepare Docker Container Licenses
+      shell: bash
+      run: ./ci/accept-third-party-license.sh
+    - name: Test Release
+      shell: bash
+      run:  ./mvnw --batch-mode --settings release-train-settings.xml clean verify --activate-profiles releaseTrain
